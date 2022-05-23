@@ -10,9 +10,9 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            @if (item.JobId == null)
+            @if (item.JobId == null && item.SectionId != null)
             {
-                <h2>@item.FirstName @item.LastName</h2> 
+                <h2>@item.FirstName @item.LastName</h2>
             }
 
         }
