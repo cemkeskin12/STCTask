@@ -1,0 +1,36 @@
+﻿@using WebMvc.Entities
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+@model IEnumerable<Department>
+
+
+<div class="container" >
+    <div class="row" style="text-align:center">
+        
+        @foreach (var item in Model)
+        {
+            <div class="col-12" style="text-align:center">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       @item.Id - @item.Name
+                    </button> <a href="/Home/WorkersInDepartment/@item.Id" class="fa-solid fa-eye"></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (var sections in item.Sections)
+                        {
+
+                            <a class="dropdown-item" href="#"><a href="/Home/WorkersInSection/@sections.Id">@item.Id.@sections.Id - @sections.Name</a></a>
+                            @foreach (var job in sections.Jobs)
+                            {
+                                <a href="/Home/WorkersInJob/@job.Id" class="d-block">@item.Id.@sections.Id.@job.Id - @job.Name</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

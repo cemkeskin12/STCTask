@@ -1,0 +1,20 @@
+﻿@using WebMvc.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Worker>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @if (item.JobId == null)
+            {
+                <h2>@item.FirstName @item.LastName</h2> 
+            }
+
+        }
+    </div>
+</div>
