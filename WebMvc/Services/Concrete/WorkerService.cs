@@ -14,18 +14,27 @@ namespace WebMvc.Services.Concrete
             this.dbContext = dbContext;
         }
 
-        public async Task<List<Worker>> GetWorkersInDepartmentAsync(int departmentId)
+        public async Task<List<string>> GetWorkersInDepartmentAsync(int departmentId)
         {
-            return await dbContext.Workers.Where(x => x.DepartmentId == departmentId).ToListAsync();
+            var workers = await dbContext.Workers
+                .Where(x => x.DepartmentId == departmentId && x.SectionId == null && x.JobId == null)
+                .Select(x=> x.FirstName + " " + x.LastName).ToListAsync();
+            return workers;
         }
 
-        public async Task<List<Worker>> GetWorkersInSectionAsync(int sectionId)
+        public async Task<List<string>> GetWorkersInSectionAsync(int sectionId)
         {
-            return await dbContext.Workers.Where(x => x.SectionId == sectionId).ToListAsync();
+            var workers = await dbContext.Workers
+                .Where(x => x.SectionId == sectionId && x.DepartmentId != null && x.JobId == null)
+                .Select(x => x.FirstName + " " + x.LastName).ToListAsync();
+            return workers;
         }
-        public async Task<List<Worker>> GetWorkersInJobAsync(int jobId)
+        public async Task<List<string>> GetWorkersInJobAsync(int jobId)
         {
-            return await dbContext.Workers.Where(x => x.JobId == jobId).ToListAsync();
+            var workers = await dbContext.Workers
+                .Where(x => x.JobId == jobId && x.SectionId != null && x.DepartmentId != null)
+                .Select(x => x.FirstName + " " + x.LastName).ToListAsync();
+            return workers;
         }
     }
 }

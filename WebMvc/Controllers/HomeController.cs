@@ -33,7 +33,7 @@ namespace WebMvc.Controllers
         }
         public async Task<IActionResult> WorkersInJob(int id)
         {
-            var workers = await workerService.GetWorkersInSectionAsync(id);
+            var workers = await workerService.GetWorkersInJobAsync(id);
             return View(workers);
         }
     }

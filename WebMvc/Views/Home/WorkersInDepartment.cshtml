@@ -4,12 +4,9 @@
 *@
 @{
 }
-@model IEnumerable<Worker>
+@model IEnumerable<string>
 
 @foreach (var item in Model)
 {
-    @if(item.SectionId == null && item.JobId == null)
-    {
-    <h2>@item.FirstName @item.LastName</h2>
-    }
+    <h2>@item</h2>
 }

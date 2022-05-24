@@ -4,9 +4,9 @@ namespace WebMvc.Services.Abstract
 {
     public interface IWorkerService
     {
-        Task<List<Worker>> GetWorkersInDepartmentAsync(int departmentId);
-        Task<List<Worker>> GetWorkersInSectionAsync(int sectionId);
-        Task<List<Worker>> GetWorkersInJobAsync(int jobId);
+        Task<List<string>> GetWorkersInDepartmentAsync(int departmentId);
+        Task<List<string>> GetWorkersInSectionAsync(int sectionId);
+        Task<List<string>> GetWorkersInJobAsync(int jobId);
     }
     
 }
